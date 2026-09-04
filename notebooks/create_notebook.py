@@ -555,6 +555,112 @@ os.makedirs(models_dir, exist_ok=True)
 joblib.dump(production_pipeline, os.path.join(models_dir, 'house_price_model.pkl'))
 print(f"Successfully exported house_price_model.pkl to {models_dir}")"""))
 
+    # ── Section 11: Conclusion ──────────────────────────────────────────────────
+    cells.append(nbf.v4.new_markdown_cell("""---
+## 11. Conclusion
+
+### Summary of Findings
+
+This project successfully designed, trained, and evaluated an **end-to-end AI-powered house price
+prediction and smart property recommendation system** tailored for the Bangalore residential real
+estate market.
+
+#### Model Performance Overview
+
+| Model | R² Score | CV R² Mean | MAE (₹) |
+|-------|----------|------------|---------|
+| Linear Regression | 0.8068 | 0.8694 | ₹ 18.77 L |
+| Decision Tree | 0.8653 | 0.8702 | ₹ 17.91 L |
+| Random Forest | 0.9334 | 0.9080 | ₹ 12.50 L |
+| **XGBoost** | **0.9506** | **0.9208** | **₹ 10.23 L** |
+| Deep Neural Network | 0.8557 | 0.8386 | ₹ 10.86 L |
+
+#### Key Insights
+1. **XGBoost** achieved the best balance of accuracy (R² = 0.9506) and cross-validation stability (CV R² = 0.9208 ± 0.0723), confirming it as the production model.
+2. **Area** is the dominant predictor, contributing ~68% of feature importance, followed by **Location** (Koramangala, Indiranagar premium) and **luxury_score**.
+3. **K-Means Clustering** effectively partitioned properties into three distinct market tiers — Budget, Mid-Range, and Luxury — supporting the recommendation engine's segment-awareness.
+4. **PCA** revealed that ~85% of variance is explained by the first 2 principal components, confirming the compressibility of the feature space.
+5. The **Deep Learning MLP** achieved competitive MAE (₹10.86 L) but was outperformed by XGBoost on R² due to the tabular nature of the dataset.
+
+#### Project Deliverables
+- ✅ Trained XGBoost pipeline serialized as `models/house_price_model.pkl`
+- ✅ K-Means and PCA artifacts for segmentation and visualization
+- ✅ Property catalog of 3,600+ listings for recommendation
+- ✅ Interactive Streamlit web application with prediction and recommendation UI
+- ✅ Comprehensive comparative evaluation across 5 models
+"""))
+
+    # ── Section 12: Future Enhancements ────────────────────────────────────────
+    cells.append(nbf.v4.new_markdown_cell("""---
+## 12. Future Enhancements
+
+The following enhancements would significantly improve the system in a production deployment:
+
+### 🤖 Model Improvements
+- **Ensemble Stacking**: Stack XGBoost predictions with Deep Learning outputs via a meta-learner.
+- **LightGBM / CatBoost**: Benchmark against XGBoost for potential gains.
+- **Hyperparameter Optimization**: Use Optuna or Ray Tune for automated HPO.
+- **Online Learning**: Implement incremental model updates as new market data arrives.
+
+### 📊 Data Enrichment
+- **Real-Time Kaggle Data Pull**: Schedule periodic dataset refreshes via Kaggle API.
+- **External Data**: Integrate macro-economic indicators (RBI repo rate, cement price index) as additional features.
+- **Satellite & POI Data**: Add proximity-to-metro, schools, hospitals via Google Maps API.
+- **Image-Based Valuation**: Use CNN models on property images for additional price signals.
+
+### 🌐 Deployment & Scalability
+- **REST API**: Serve the model through a production-grade FastAPI endpoint with JWT authentication.
+- **Real-Time Dashboard**: Add live property market heatmaps with Plotly/Deck.gl.
+- **MLflow / DVC**: Track experiments and model versions for full ML lifecycle management.
+- **Docker + Kubernetes**: Containerize the application for scalable cloud deployment.
+- **A/B Testing**: Compare model versions in production with shadow deployment.
+
+### 🔍 Recommendation Engine
+- **Collaborative Filtering**: Combine content-based similarity with user behavior patterns.
+- **Graph Neural Networks**: Model relational property similarity in a graph structure.
+- **Natural Language Search**: Allow users to describe desired properties in plain English.
+"""))
+
+    # ── Section 13: Project Links ───────────────────────────────────────────────
+    cells.append(nbf.v4.new_markdown_cell("""---
+## 13. Project Links & Deployment
+
+### 📂 GitHub Repository
+> **Repository URL**: https://github.com/AdithiP07/House-Price-Prediction-And-Recommedation-System
+
+The complete source code including the Streamlit application, model training scripts,
+Jupyter Notebook, and deployment configuration is available at the link above.
+
+### 🚀 Streamlit Community Cloud Application
+> **Hosted Application URL**: *(Paste your Streamlit Cloud URL here after deployment)*
+
+The interactive web application is deployed on **Streamlit Community Cloud** and includes:
+- House price prediction with configurable property inputs
+- Top-5 similar property recommendation cards
+- Model performance leaderboard and feature importance analytics
+- Market segmentation (Budget / Mid-Range / Luxury) via K-Means
+
+### 📋 Quick Start (Local)
+```bash
+# Clone the repository
+git clone https://github.com/AdithiP07/House-Price-Prediction-And-Recommedation-System.git
+cd House-Price-Prediction-And-Recommedation-System
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run Streamlit app
+streamlit run streamlit_app/app.py
+```
+
+### 📸 Application Screenshots
+Screenshots of the running application are available in the `screenshots/` directory
+of the GitHub repository.
+
+---
+*End of Notebook — AI-Powered House Price Prediction & Smart Property Recommendation System*
+"""))
+
     nb.cells = cells
     notebook_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "notebooks", "model_development.ipynb")
     with open(notebook_path, "w", encoding="utf-8") as f:
@@ -563,3 +669,4 @@ print(f"Successfully exported house_price_model.pkl to {models_dir}")"""))
 
 if __name__ == "__main__":
     build_notebook()
+

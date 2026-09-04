@@ -395,11 +395,11 @@ body {
 
 .form-control {
   width: 100%;
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid var(--border-glass);
+  background: #0f172a !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: 12px;
   padding: 0.75rem 1rem;
-  color: #fff;
+  color: #ffffff !important;
   font-family: var(--font-body);
   font-size: 0.95rem;
   outline: none;
@@ -408,11 +408,12 @@ body {
 .form-control:focus {
   border-color: var(--border-glass-focus);
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
-  background: rgba(15, 23, 42, 0.85);
+  background: #1e293b !important;
+  color: #ffffff !important;
 }
 select.form-control option {
-  background: #111827;
-  color: #fff;
+  background: #0f172a !important;
+  color: #ffffff !important;
 }
 
 .form-row-2 {

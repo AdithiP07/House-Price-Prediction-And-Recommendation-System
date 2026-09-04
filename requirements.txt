@@ -9,11 +9,14 @@ joblib>=1.3.0
 # Deep Learning
 tensorflow>=2.15.0
 
+# Interactive Web Application
+streamlit>=1.30.0
+
 # Visualization & Reporting
 matplotlib>=3.8.0
 seaborn>=0.13.0
 
-# Backend Framework & API
+# Backend Framework & API (Optional FastAPI interface)
 fastapi>=0.110.0
 uvicorn[standard]>=0.28.0
 pydantic>=2.6.0
