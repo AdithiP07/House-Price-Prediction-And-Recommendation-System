@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI-Powered House Price Prediction and Smart Property Recommendation System built with Machine Learning, Deep Learning, and FastAPI." />
+  <title>AI Real Estate Intelligence | House Price Prediction & Recommendation</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <!-- Ambient Background Glows -->
+  <div class="glow-sphere sphere-1"></div>
+  <div class="glow-sphere sphere-2"></div>
+  <div class="glow-sphere sphere-3"></div>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-city"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">PropIntellect<span class="ai-badge">AI</span></span>
+          <span class="brand-subtitle">Smart Valuation & Property Recommender</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <button class="nav-tab active" data-tab="predictor-tab" id="tabBtnPredict">
+          <i class="fa-solid fa-calculator"></i> Price Predictor
+        </button>
+        <button class="nav-tab" data-tab="recommender-tab" id="tabBtnRecommend">
+          <i class="fa-solid fa-compass"></i> Smart Recommendations
+        </button>
+        <button class="nav-tab" data-tab="analytics-tab" id="tabBtnAnalytics">
+          <i class="fa-solid fa-chart-line"></i> Market & Models
+        </button>
+        <button class="nav-tab" data-tab="api-tab" id="tabBtnApi">
+          <i class="fa-solid fa-code"></i> API Explorer
+        </button>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-indicator live"></span>
+        <span class="status-label">Model v1.0 Active (R²: 95.1%)</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-badge">
+        <i class="fa-solid fa-microchip"></i> Powered by XGBoost, Random Forest & Keras Deep Learning
+      </div>
+      <h1 class="hero-title">AI-Powered Real Estate Valuation & Property Recommendation</h1>
+      <p class="hero-description">
+        State-of-the-art predictive algorithms calibrated across 3,600+ metropolitan properties. 
+        Instant valuations, intelligent market tiering, and hyper-personalized property matchmaking.
+      </p>
+
+      <!-- Key Metrics Counters -->
+      <div class="stats-row">
+        <div class="stat-pill">
+          <i class="fa-solid fa-database"></i>
+          <div><strong>3,600+</strong><span>Properties Trained</span></div>
+        </div>
+        <div class="stat-pill">
+          <i class="fa-solid fa-bullseye"></i>
+          <div><strong>95.1%</strong><span>Model Accuracy (R²)</span></div>
+        </div>
+        <div class="stat-pill">
+          <i class="fa-solid fa-location-dot"></i>
+          <div><strong>15</strong><span>Prime Localities</span></div>
+        </div>
+        <div class="stat-pill">
+          <i class="fa-solid fa-layer-group"></i>
+          <div><strong>3 Tiers</strong><span>Budget, Mid & Luxury</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 1: HOUSE PRICE PREDICTOR -->
+    <section class="tab-pane active" id="predictor-tab">
+      <div class="glass-grid">
+        <!-- Input Form Card -->
+        <div class="glass-card form-card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-sliders"></i></div>
+            <div>
+              <h2 class="card-title">Property Feature Configuration</h2>
+              <p class="card-subtitle">Adjust parameters to compute real-time property valuation</p>
+            </div>
+          </div>
+
+          <form id="predictionForm" class="prediction-form">
+            <!-- Location Selector -->
+            <div class="form-group">
+              <label for="predLocation" class="form-label">
+                <i class="fa-solid fa-map-pin"></i> Locality / Neighborhood
+              </label>
+              <select id="predLocation" class="form-control" required>
+                <option value="Whitefield" selected>Whitefield</option>
+                <option value="Indiranagar">Indiranagar (Prime Luxury)</option>
+                <option value="Koramangala">Koramangala (Tech & Luxury)</option>
+                <option value="HSR Layout">HSR Layout (Startup Corridor)</option>
+                <option value="Electronic City">Electronic City (IT Hub)</option>
+                <option value="Bellandur">Bellandur (Tech Park Belt)</option>
+                <option value="Marathahalli">Marathahalli</option>
+                <option value="Hebbal">Hebbal (North Bangalore)</option>
+                <option value="Rajajinagar">Rajajinagar (Central Metro)</option>
+                <option value="Sarjapur Road">Sarjapur Road</option>
+                <option value="Jayanagar">Jayanagar (Heritage High-End)</option>
+                <option value="Malleshwaram">Malleshwaram</option>
+                <option value="Yelahanka">Yelahanka</option>
+                <option value="Banashankari">Banashankari</option>
+                <option value="Thanisandra">Thanisandra</option>
+              </select>
+            </div>
+
+            <!-- Area Input with Slider -->
+            <div class="form-group">
+              <div class="label-row">
+                <label for="predArea" class="form-label">
+                  <i class="fa-solid fa-ruler-combined"></i> Super Built-up Area
+                </label>
+                <span class="value-badge" id="areaDisplay">1,500 Sq.Ft</span>
+              </div>
+              <div class="range-with-number">
+                <input type="range" id="predAreaRange" min="500" max="5000" step="50" value="1500" class="range-slider" />
+                <input type="number" id="predArea" min="400" max="6000" step="10" value="1500" class="form-control number-input" required />
+              </div>
+            </div>
+
+            <!-- BHK & Bathrooms Row -->
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label"><i class="fa-solid fa-bed"></i> Bedrooms (BHK)</label>
+                <div class="pill-group" id="bhkGroup">
+                  <button type="button" class="pill-btn" data-val="1">1</button>
+                  <button type="button" class="pill-btn" data-val="2">2</button>
+                  <button type="button" class="pill-btn active" data-val="3">3</button>
+                  <button type="button" class="pill-btn" data-val="4">4</button>
+                  <button type="button" class="pill-btn" data-val="5">5</button>
+                </div>
+                <input type="hidden" id="predBhk" value="3" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"><i class="fa-solid fa-bath"></i> Bathrooms</label>
+                <div class="pill-group" id="bathGroup">
+                  <button type="button" class="pill-btn" data-val="1">1</button>
+                  <button type="button" class="pill-btn active" data-val="2">2</button>
+                  <button type="button" class="pill-btn" data-val="3">3</button>
+                  <button type="button" class="pill-btn" data-val="4">4</button>
+                  <button type="button" class="pill-btn" data-val="5">5</button>
+                </div>
+                <input type="hidden" id="predBath" value="2" />
+              </div>
+            </div>
+
+            <!-- Property Age Slider -->
+            <div class="form-group">
+              <div class="label-row">
+                <label for="predAgeRange" class="form-label">
+                  <i class="fa-solid fa-hourglass-half"></i> Property Age
+                </label>
+                <div class="badges-pair">
+                  <span class="value-badge" id="ageDisplay">5 Years</span>
+                  <span class="age-category-tag tag-modern" id="ageCategoryTag">Modern (4-10 yrs)</span>
+                </div>
+              </div>
+              <input type="range" id="predAgeRange" min="0" max="30" step="1" value="5" class="range-slider" />
+              <input type="hidden" id="predAge" value="5" />
+            </div>
+
+            <!-- Furnishing Status -->
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-couch"></i> Furnishing Status</label>
+              <div class="pill-group full-width" id="furnishGroup">
+                <button type="button" class="pill-btn" data-val="Furnished">Furnished</button>
+                <button type="button" class="pill-btn active" data-val="Semi-Furnished">Semi-Furnished</button>
+                <button type="button" class="pill-btn" data-val="Unfurnished">Unfurnished</button>
+              </div>
+              <input type="hidden" id="predFurnish" value="Semi-Furnished" />
+            </div>
+
+            <!-- Amenities Chips -->
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-dumbbell"></i> Society Amenities (Luxury Multipliers)</label>
+              <div class="chip-container" id="amenityChips">
+                <label class="chip selected"><input type="checkbox" value="Gym" checked /> Gym</label>
+                <label class="chip selected"><input type="checkbox" value="Swimming Pool" checked /> Swimming Pool</label>
+                <label class="chip selected"><input type="checkbox" value="Clubhouse" checked /> Clubhouse</label>
+                <label class="chip selected"><input type="checkbox" value="24/7 Security" checked /> 24/7 Security</label>
+                <label class="chip selected"><input type="checkbox" value="Power Backup" checked /> Power Backup</label>
+                <label class="chip selected"><input type="checkbox" value="Covered Parking" checked /> Covered Parking</label>
+                <label class="chip"><input type="checkbox" value="Landscaped Garden" /> Landscaped Garden</label>
+                <label class="chip"><input type="checkbox" value="Tennis Court" /> Tennis Court</label>
+                <label class="chip"><input type="checkbox" value="High-Speed Elevators" /> High-Speed Elevators</label>
+                <label class="chip"><input type="checkbox" value="Children's Play Area" /> Children's Play Area</label>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="btnCalculatePrice">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Predict Property Price
+            </button>
+          </form>
+        </div>
+
+        <!-- Result Display Card -->
+        <div class="glass-card result-card" id="valuationResultCard">
+          <div class="result-card-inner">
+            <div class="result-header">
+              <span class="eyebrow-text">Estimated Market Value</span>
+              <div class="category-badge" id="resCategoryBadge">Mid-Range Asset</div>
+            </div>
+
+            <div class="price-hero">
+              <div class="price-val" id="resPriceFormatted">₹85.00 Lakhs</div>
+              <div class="price-numeric" id="resPriceNumeric">Exact: ₹8,500,000 INR</div>
+            </div>
+
+            <!-- Key Metric Breakdown -->
+            <div class="metrics-grid">
+              <div class="metric-box">
+                <span class="m-label">Rate / Sq.Ft</span>
+                <span class="m-val" id="resRateSqft">₹5,667</span>
+              </div>
+              <div class="metric-box">
+                <span class="m-label">Luxury Score</span>
+                <span class="m-val text-cyan" id="resLuxuryScore">7.2 / 10</span>
+              </div>
+              <div class="metric-box">
+                <span class="m-label">Model Confidence</span>
+                <span class="m-val text-emerald" id="resConfidence">94.0%</span>
+              </div>
+              <div class="metric-box">
+                <span class="m-label">Cluster Match</span>
+                <span class="m-val text-gold" id="resClusterText">Mid-Range Tier</span>
+              </div>
+            </div>
+
+            <!-- Valuation Analysis Summary -->
+            <div class="analysis-box">
+              <h4 class="analysis-title"><i class="fa-solid fa-chart-pie"></i> Valuation Intelligence Breakdown</h4>
+              <ul class="analysis-list" id="analysisList">
+                <li><i class="fa-solid fa-check text-emerald"></i> <strong>Location Premium:</strong> Whitefield commands a strong tech corridor base rate.</li>
+                <li><i class="fa-solid fa-check text-emerald"></i> <strong>Optimal Layout:</strong> 3 BHK with 2 Bathrooms offers peak market demand efficiency.</li>
+                <li><i class="fa-solid fa-check text-emerald"></i> <strong>Vintage:</strong> 5-year age maintains modern structural integrity with minimal depreciation.</li>
+                <li><i class="fa-solid fa-check text-emerald"></i> <strong>Amenities:</strong> Premium amenities (Gym, Pool, Clubhouse) enhance market liquidity.</li>
+              </ul>
+            </div>
+
+            <!-- Quick Action CTA -->
+            <button class="secondary-btn" id="btnFindSimilar">
+              <i class="fa-solid fa-magnifying-glass-location"></i> Find Similar Properties in this Budget
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: SMART PROPERTY RECOMMENDATIONS -->
+    <section class="tab-pane" id="recommender-tab">
+      <div class="recommender-container">
+        <!-- Filter Bar -->
+        <div class="glass-card filter-bar">
+          <div class="filter-title-row">
+            <div class="card-icon"><i class="fa-solid fa-compass"></i></div>
+            <div>
+              <h3 class="card-title">Property Recommendation Preferences</h3>
+              <p class="card-subtitle">AI matchmaking across budget, locality, configuration, and lifestyle needs</p>
+            </div>
+          </div>
+
+          <form id="recommendForm" class="filter-form">
+            <div class="filter-row">
+              <div class="form-group flex-1">
+                <label class="form-label"><i class="fa-solid fa-wallet"></i> Target Budget (₹)</label>
+                <div class="input-with-format">
+                  <input type="number" id="recBudget" value="8500000" min="1500000" max="50000000" step="100000" class="form-control" required />
+                  <span class="budget-tag" id="recBudgetFormatted">₹85.00 Lakhs</span>
+                </div>
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label"><i class="fa-solid fa-map-location-dot"></i> Preferred Locality</label>
+                <select id="recLocation" class="form-control">
+                  <option value="">Any Locality (All Bangalore)</option>
+                  <option value="Whitefield" selected>Whitefield</option>
+                  <option value="Indiranagar">Indiranagar</option>
+                  <option value="Koramangala">Koramangala</option>
+                  <option value="HSR Layout">HSR Layout</option>
+                  <option value="Electronic City">Electronic City</option>
+                  <option value="Bellandur">Bellandur</option>
+                  <option value="Marathahalli">Marathahalli</option>
+                  <option value="Hebbal">Hebbal</option>
+                  <option value="Rajajinagar">Rajajinagar</option>
+                  <option value="Sarjapur Road">Sarjapur Road</option>
+                  <option value="Jayanagar">Jayanagar</option>
+                  <option value="Malleshwaram">Malleshwaram</option>
+                  <option value="Yelahanka">Yelahanka</option>
+                  <option value="Banashankari">Banashankari</option>
+                  <option value="Thanisandra">Thanisandra</option>
+                </select>
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label"><i class="fa-solid fa-bed"></i> BHK Preference</label>
+                <select id="recBhk" class="form-control">
+                  <option value="">Any BHK</option>
+                  <option value="1">1 BHK</option>
+                  <option value="2">2 BHK</option>
+                  <option value="3" selected>3 BHK</option>
+                  <option value="4">4 BHK</option>
+                  <option value="5">5 BHK</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Desired Amenities -->
+            <div class="form-group">
+              <label class="form-label"><i class="fa-solid fa-star"></i> Desired Amenities</label>
+              <div class="chip-container" id="recAmenityChips">
+                <label class="chip selected"><input type="checkbox" value="Gym" checked /> Gym</label>
+                <label class="chip selected"><input type="checkbox" value="Swimming Pool" checked /> Swimming Pool</label>
+                <label class="chip selected"><input type="checkbox" value="24/7 Security" checked /> 24/7 Security</label>
+                <label class="chip selected"><input type="checkbox" value="Clubhouse" checked /> Clubhouse</label>
+                <label class="chip"><input type="checkbox" value="Power Backup" /> Power Backup</label>
+                <label class="chip"><input type="checkbox" value="Covered Parking" /> Covered Parking</label>
+                <label class="chip"><input type="checkbox" value="Landscaped Garden" /> Landscaped Garden</label>
+                <label class="chip"><input type="checkbox" value="Tennis Court" /> Tennis Court</label>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="btnRunRecommendations">
+              <i class="fa-solid fa-magnifying-glass"></i> Recommend Top 5 Properties
+            </button>
+          </form>
+        </div>
+
+        <!-- Recommendations Results List -->
+        <div class="recommendations-results">
+          <div class="results-header-bar">
+            <h3 class="sec-title"><i class="fa-solid fa-sparkles text-gold"></i> Recommended Properties (<span id="recCount">5</span>)</h3>
+            <span class="criteria-pill" id="recCriteriaBadge">Budget: ₹85 Lakhs | 3 BHK | Whitefield</span>
+          </div>
+
+          <div class="cards-grid" id="recommendationsGrid">
+            <!-- Dynamically populated cards -->
+            <div class="skeleton-card">Loading recommendations...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: MARKET & MODEL ANALYTICS -->
+    <section class="tab-pane" id="analytics-tab">
+      <div class="analytics-container">
+        <!-- Model Comparison Leaderboard -->
+        <div class="glass-card mb-4">
+          <div class="card-header">
+            <div class="card-icon gold"><i class="fa-solid fa-trophy"></i></div>
+            <div>
+              <h3 class="card-title">Machine Learning & Deep Learning Model Leaderboard</h3>
+              <p class="card-subtitle">Benchmarked on 20% holdout test partition with 5-Fold Cross Validation</p>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="analytics-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Algorithm</th>
+                  <th>MAE (₹)</th>
+                  <th>RMSE (₹)</th>
+                  <th>R² Score</th>
+                  <th>5-Fold CV R²</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboardTbody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Visual EDA & Model Plots Gallery -->
+        <div class="glass-card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <div>
+              <h3 class="card-title">Exploratory Data Analysis & Dimensionality Plots</h3>
+              <p class="card-subtitle">High-resolution visualizations generated by Matplotlib and Seaborn pipeline</p>
+            </div>
+          </div>
+
+          <div class="gallery-tabs" id="galleryTabs">
+            <button class="gal-tab active" data-img="price_distribution.png">Price Distribution</button>
+            <button class="gal-tab" data-img="correlation_heatmap.png">Correlation Heatmap</button>
+            <button class="gal-tab" data-img="area_vs_price.png">Area vs Price</button>
+            <button class="gal-tab" data-img="bhk_vs_price.png">BHK vs Price</button>
+            <button class="gal-tab" data-img="location_avg_price.png">Location Averages</button>
+            <button class="gal-tab" data-img="feature_importance.png">Feature Importance</button>
+            <button class="gal-tab" data-img="kmeans_clusters.png">K-Means Clusters</button>
+            <button class="gal-tab" data-img="pca_analysis.png">PCA Space</button>
+            <button class="gal-tab" data-img="neural_network_loss.png">Neural Net Loss</button>
+          </div>
+
+          <div class="plot-viewer">
+            <img id="activePlotImg" src="/static/reports/figures/price_distribution.png" alt="EDA Plot Viewer" class="plot-image" />
+            <div class="plot-caption" id="plotCaption">House Price Distribution & Boxplot (in Lakhs INR)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: API EXPLORER -->
+    <section class="tab-pane" id="api-tab">
+      <div class="api-container">
+        <div class="glass-card">
+          <div class="card-header">
+            <div class="card-icon cyan"><i class="fa-solid fa-terminal"></i></div>
+            <div>
+              <h3 class="card-title">Interactive API Tester & Specification</h3>
+              <p class="card-subtitle">Direct integration endpoints with Pydantic validation and error handling</p>
+            </div>
+          </div>
+
+          <div class="api-links-row">
+            <a href="/docs" target="_blank" class="api-link-btn">
+              <i class="fa-solid fa-book-open"></i> Open Swagger UI (/docs)
+            </a>
+            <a href="/redoc" target="_blank" class="api-link-btn secondary">
+              <i class="fa-solid fa-file-lines"></i> Open ReDoc (/redoc)
+            </a>
+            <a href="/health" target="_blank" class="api-link-btn tertiary">
+              <i class="fa-solid fa-heart-pulse"></i> Health Check (/health)
+            </a>
+          </div>
+
+          <!-- Quick Test Box -->
+          <div class="code-panels">
+            <div class="code-box">
+              <div class="code-header">
+                <span class="badge post">POST</span> <code>/predict</code>
+              </div>
+              <pre class="code-content"><code>curl -X 'POST' \
+  'http://127.0.0.1:8000/predict' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "area": 1500,
+    "bhk": 3,
+    "bathrooms": 2,
+    "property_age": 5,
+    "location": "Whitefield"
+  }'</code></pre>
+            </div>
+
+            <div class="code-box">
+              <div class="code-header">
+                <span class="badge post">POST</span> <code>/recommend</code>
+              </div>
+              <pre class="code-content"><code>curl -X 'POST' \
+  'http://127.0.0.1:8000/recommend' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "budget": 8500000,
+    "location": "Whitefield",
+    "bhk": 3,
+    "amenities": ["Gym", "Swimming Pool", "24/7 Security"],
+    "top_n": 5
+  }'</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>AI-Powered House Price Prediction & Smart Property Recommendation System</p>
+      <p class="subtext">Engineered with Python, Scikit-Learn, XGBoost, TensorFlow/Keras, and FastAPI.</p>
+    </div>
+  </footer>
+
+  <!-- App Script -->
+  <script src="/static/app.js"></script>
+</body>
+</html>

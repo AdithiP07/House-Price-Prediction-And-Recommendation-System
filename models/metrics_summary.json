@@ -1,0 +1,129 @@
+{
+  "leaderboard": [
+    {
+      "Model": "Linear Regression",
+      "MAE": 1876903.46,
+      "MSE": 13882549664081.26,
+      "RMSE": 3725929.37,
+      "R2_Score": 0.8068,
+      "CV_R2_Mean": 0.8694,
+      "CV_R2_Std": 0.073
+    },
+    {
+      "Model": "Decision Tree",
+      "MAE": 1791401.12,
+      "MSE": 9682067223463.21,
+      "RMSE": 3111602.03,
+      "R2_Score": 0.8653,
+      "CV_R2_Mean": 0.8702,
+      "CV_R2_Std": 0.077
+    },
+    {
+      "Model": "Random Forest",
+      "MAE": 1250428.22,
+      "MSE": 4788007647837.79,
+      "RMSE": 2188151.65,
+      "R2_Score": 0.9334,
+      "CV_R2_Mean": 0.908,
+      "CV_R2_Std": 0.0719
+    },
+    {
+      "Model": "XGBoost",
+      "MAE": 1022818.41,
+      "MSE": 3548591485255.21,
+      "RMSE": 1883770.55,
+      "R2_Score": 0.9506,
+      "CV_R2_Mean": 0.9208,
+      "CV_R2_Std": 0.0723
+    },
+    {
+      "Model": "Deep Neural Network (Keras)",
+      "MAE": 1086300.79,
+      "MSE": 10371191448204.08,
+      "RMSE": 3220433.43,
+      "R2_Score": 0.8557,
+      "CV_R2_Mean": 0.8386,
+      "CV_R2_Std": 0.0125
+    }
+  ],
+  "best_model": "XGBoost",
+  "feature_importances": [
+    {
+      "Feature": "Area",
+      "Importance": 0.679881826899571
+    },
+    {
+      "Feature": "Location_Koramangala",
+      "Importance": 0.05819287957314399
+    },
+    {
+      "Feature": "Location_Indiranagar",
+      "Importance": 0.04953569401734079
+    },
+    {
+      "Feature": "BHK",
+      "Importance": 0.03899748237373775
+    },
+    {
+      "Feature": "Property Age",
+      "Importance": 0.03880408842136414
+    },
+    {
+      "Feature": "Location_Electronic City",
+      "Importance": 0.028778939103781265
+    },
+    {
+      "Feature": "Location_Jayanagar",
+      "Importance": 0.028062813658178646
+    },
+    {
+      "Feature": "Location_Whitefield",
+      "Importance": 0.018120634793119234
+    },
+    {
+      "Feature": "Location_Malleshwaram",
+      "Importance": 0.017213219248564136
+    },
+    {
+      "Feature": "Location_Rajajinagar",
+      "Importance": 0.01017925859055925
+    },
+    {
+      "Feature": "Location_HSR Layout",
+      "Importance": 0.007960142429904993
+    },
+    {
+      "Feature": "luxury_score",
+      "Importance": 0.007739221513627268
+    }
+  ],
+  "dataset_stats": {
+    "total_properties": 3603,
+    "locations_count": 15,
+    "avg_price": 12568282.4,
+    "median_price": 10420000.0,
+    "avg_price_per_sqft": 8082.04,
+    "categories": {
+      "Budget": 1876,
+      "Mid-Range": 1229,
+      "Luxury": 498
+    }
+  },
+  "locations": [
+    "Banashankari",
+    "Bellandur",
+    "Electronic City",
+    "HSR Layout",
+    "Hebbal",
+    "Indiranagar",
+    "Jayanagar",
+    "Koramangala",
+    "Malleshwaram",
+    "Marathahalli",
+    "Rajajinagar",
+    "Sarjapur Road",
+    "Thanisandra",
+    "Whitefield",
+    "Yelahanka"
+  ]
+}
